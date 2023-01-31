@@ -3,7 +3,6 @@ import tkinter as tk
 import tkinter as ttk
 file = open("historique.txt", "a+")
 file.close()
-# crétion window
 root = tk.Tk()
 root.title('Calculator')
 root.geometry("400x400")
@@ -14,7 +13,6 @@ operations = StringVar()
 toshow = StringVar()  
 
 
-# create Buttons
 
 oneBouton = ttk.Button(frame_button, text="1", pady=10, padx=20, font="Helvetica 15", bg="white", fg="black",
                       command=lambda: calculation(1))
@@ -38,17 +36,16 @@ plusBouton.grid(row=2, column=3, padx=2, pady=3)
 
 fourBouton = ttk.Button(frame_button, text="4", pady=10, padx=20, font="Helvetica 15", bg="white", fg="black",
                           command=lambda: calculation(4))
-# Set the position of button on the top of window.
+
 fourBouton.grid(row=3, column=0, padx=2, pady=3)
 
 fiveBouton = ttk.Button(frame_button, text="5", pady=10, padx=20, font="Helvetica 15", bg="white", fg="black",
                         command=lambda: calculation(5))
-# Set the position of button on the top of window.
 fiveBouton.grid(row=3, column=1, padx=2, pady=3)
 
 sixBouton = ttk.Button(frame_button, text="6", pady=10, padx=20, font="Helvetica 15", bg="white", fg="black",
                        command=lambda: calculation(6))
-# Set the position of button on the top of window.
+
 sixBouton.grid(row=3, column=2, padx=2, pady=3)
 
 lessBouton = ttk.Button(frame_button, text="-", pady=10, padx=20, font="Helvetica 15", bg="white", fg="black",
@@ -60,17 +57,17 @@ lessBouton.grid(row=3, column=3, padx=2, pady=3)
 
 sevenBouton = ttk.Button(frame_button, text="7", pady=10, padx=20, font="Helvetica 15", bg="white", fg="black",
                         command=lambda: calculation(7))
-# Set the position of button on the top of window.
+
 sevenBouton.grid(row=4, column=0, padx=2, pady=3)
 
 heightBouton = ttk.Button(frame_button, text="8", pady=10, padx=20, font="Helvetica 15", bg="white", fg="black",
                         command=lambda: calculation(8))
-# Set the position of button on the top of window.
+
 heightBouton.grid(row=4, column=1, padx=2, pady=3)
 
 nineBouton = ttk.Button(frame_button, text="9", pady=10, padx=20, font="Helvetica 15", bg="white", fg="black",
                         command=lambda: calculation(9))
-# Set the position of button on the top of window.
+
 nineBouton.grid(row=4, column=2, padx=2, pady=3)
 ###############################################################################################################################
 ##############################################################################################################################
@@ -123,13 +120,7 @@ screenresult.grid(row=0, column=0)
 
 def openNewWindow():
     master = tk.Tk()
-    # Toplevel object which will
-    # be treated as a new window
-    #newWindow = Toplevel(master)
-    # sets the title of the
-    # Toplevel widget
     master.title("New Window")
-    # sets the geometry of toplevel
     file = open("historique.txt", "r")
     histo = file.read()
     file.close()
@@ -139,10 +130,7 @@ def openNewWindow():
             n += 1
     
     master.geometry("300x"+str(50 + 25*n))
-    # A Label widget to show in toplevel
-    #Create a canvas object
     canvas= Canvas(master, width= 1000, height= 750, bg="SpringGreen2")
-    #Add a text in Canvas
     canvas.create_text(100, 12*n, text=str(histo), fill="black", font=('Helvetica 15 bold'))
     canvas.grid(row = 1, column = 1)
     
@@ -162,8 +150,6 @@ def eraseButton():
     file.close()
 
 
-# 'bt_clear' function :This is used to clear
-# the input field
 
 def erase():
     global expression
@@ -171,12 +157,10 @@ def erase():
     operations.set("")
 
 
-# 'bt_equal':This method calculates the expression
-# present in input field
 
 def equal():
     global expression
-    result = str(eval(expression))  # 'eval':This function is used to evaluates the string expression directly
+    result = str(eval(expression))  
     operations.set(result)
     file = open("historique.txt","a")
     file.write(expression+" = "+str(eval(expression))+"\n")
